@@ -389,6 +389,6 @@ export class LeaseAgreementComponent implements OnInit {
 
   reloadPage(): void {
     // โหลดหน้า
-    window.location.reload();
+    // window.location.reload();
   }
 }

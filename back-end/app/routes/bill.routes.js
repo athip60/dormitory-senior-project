@@ -49,7 +49,7 @@ module.exports = function (app) {
 
   const storage = multer.diskStorage({
     destination: (req, file, callBack) => {
-      callBack(null, "src/assets/uploads/bills");
+      callBack(null, "../front-end/src/assets/uploads/lease");
     },
     filename: (req, file, callBack) => {
       callBack(null, `Bill_${req.params.id}.jpg`);

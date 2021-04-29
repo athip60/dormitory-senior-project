@@ -23,7 +23,7 @@ export class AddUpdateImgComponent implements OnInit {
     public dialogRef: MatDialogRef<AddUpdateImgComponent>,
     public dialogService: DialogService,
     public leaseService: LeaseService,
-    public http: HttpClient
+    private http: HttpClient
   ) { }
 
   ngOnInit(): void {
@@ -76,7 +76,7 @@ export class AddUpdateImgComponent implements OnInit {
     }
   }
 
-  onSubmit() : void {
+  onSubmit() {
     this.progressBar = true;
     for (let i = 0; i < 3; i++) {
       if (i == 0) {
@@ -103,7 +103,11 @@ export class AddUpdateImgComponent implements OnInit {
         const formData = new FormData();
         formData.append('file', this.image3);
         this.http.post<any>(`http://localhost:8080/api/lease/img3/${this.data.data.room_number + '_3'}`, formData).subscribe((res) => {
+
+
           this.leaseService.uploadPhotoLease3(this.data.token, res, this.data.data.id).subscribe((res) => {
+            console.log(res);
+
             this.dialogRef.close(true)
           })
         },
