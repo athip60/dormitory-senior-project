@@ -6,7 +6,6 @@ import { BillService } from 'src/app/shared/services/bill.service';
 import { DataRoomService } from 'src/app/shared/services/data-room.service';
 import { DialogService } from 'src/app/shared/services/dialog.service';
 import { LeaseService } from 'src/app/shared/services/lease.service';
-import { RoomService } from 'src/app/shared/services/room.service';
 import { TokenStorageService } from 'src/app/shared/services/token-storage.service';
 
 @Component({
@@ -20,7 +19,7 @@ export class CreateNewBillComponent implements OnInit {
   today = new Date();
   month = this.today.getMonth() + 1
   year = this.today.getFullYear()
-  form_room_number = [];
+  form_room_number: any = [];
   constructor(
     @Inject(MAT_DIALOG_DATA) public data,
     public dialogRef: MatDialogRef<CreateNewBillComponent>,
@@ -49,7 +48,7 @@ export class CreateNewBillComponent implements OnInit {
     })
   }
 
-  selectedRoomNumber(value) {
+  selectedRoomNumber(value: any) {
     const user = this.tokenStorageService.getUser();
     this.billService.findAllByDataRoomId(this.data.token, value).subscribe((billData) => {
       // ถ้ามีข้อมูล bill เก่าอยู่แล้วดึงบิลเก่าตัวล่าสุดมาเป็น base
@@ -94,7 +93,7 @@ export class CreateNewBillComponent implements OnInit {
     })
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.dialogService.openDialogConfirm('ยืนยันข้อมูล', 'ยืนยันข้อมูลใช่หรือไม่?').afterClosed().subscribe(res => {
       console.log(this.form);
       if (res === "true") {

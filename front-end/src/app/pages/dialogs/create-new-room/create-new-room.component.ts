@@ -15,7 +15,7 @@ export class CreateNewRoomComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data,
     public dialogRef: MatDialogRef<CreateNewRoomComponent>,
     public dialogService: DialogService,
-    private roomService: RoomService,
+    public roomService: RoomService,
   ) { }
 
   ngOnInit(): void {

@@ -12,8 +12,8 @@ import { DatePipe } from '@angular/common'
 })
 export class UploadBillComponent implements OnInit {
   progressBar = false
-  image1;
-  url1 = "../../../assets/images/not-loadimg.jpg";
+  image1: string;
+  url1: string = "../../../assets/images/not-loadimg.jpg";
   form: any = {};
 
   constructor(
@@ -21,7 +21,7 @@ export class UploadBillComponent implements OnInit {
     public dialogRef: MatDialogRef<UploadBillComponent>,
     public dialogService: DialogService,
     public billService: BillService,
-    private http: HttpClient,
+    public http: HttpClient,
     public datepipe: DatePipe
   ) { }
 

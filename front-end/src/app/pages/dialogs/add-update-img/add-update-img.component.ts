@@ -11,19 +11,19 @@ import { LeaseService } from 'src/app/shared/services/lease.service';
 })
 export class AddUpdateImgComponent implements OnInit {
   progressBar = false;
-  image1;
-  image2;
-  image3;
-  url1 = "../../../assets/images/not-loadimg.jpg";
-  url2 = "../../../assets/images/not-loadimg.jpg";
-  url3 = "../../../assets/images/not-loadimg.jpg";
+  image1: string;
+  image2: string;
+  image3: string;
+  url1: string = "../../../assets/images/not-loadimg.jpg";
+  url2: string = "../../../assets/images/not-loadimg.jpg";
+  url3: string = "../../../assets/images/not-loadimg.jpg";
   form: any = {};
   constructor(
     @Inject(MAT_DIALOG_DATA) public data,
     public dialogRef: MatDialogRef<AddUpdateImgComponent>,
     public dialogService: DialogService,
     public leaseService: LeaseService,
-    private http: HttpClient
+    public http: HttpClient
   ) { }
 
   ngOnInit(): void {
@@ -76,7 +76,7 @@ export class AddUpdateImgComponent implements OnInit {
     }
   }
 
-  onSubmit() {
+  onSubmit() : void {
     this.progressBar = true;
     for (let i = 0; i < 3; i++) {
       if (i == 0) {

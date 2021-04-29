@@ -37,10 +37,9 @@ export class UpdateIncomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.data.data
-    console.log(this.form);
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.dialogService.openDialogConfirm('เพิ่มรายรับ - รายจ่าย', 'ยืนยันข้อมูลใช่หรือไม่?').afterClosed().subscribe(res => {
       if (res === "true") {
         if (this.form.credit > this.form.debit) {

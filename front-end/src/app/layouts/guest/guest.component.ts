@@ -13,7 +13,7 @@ import { NotifyService } from 'src/app/shared/services/notify.service';
   styleUrls: ['./guest.component.scss']
 })
 export class GuestComponent implements OnInit {
-  private roles: string[];
+  roles: string[];
   data_notify: string[];
   count_unread = 0;
   isBadgeHidden = false

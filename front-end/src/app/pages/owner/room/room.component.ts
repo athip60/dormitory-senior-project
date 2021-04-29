@@ -6,7 +6,6 @@ import { DialogService } from 'src/app/shared/services/dialog.service';
 import { RoomService } from 'src/app/shared/services/room.service';
 import { TokenStorageService } from 'src/app/shared/services/token-storage.service';
 import { LeaseService } from 'src/app/shared/services/lease.service';
-import { BillService } from 'src/app/shared/services/bill.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { DataRoomService } from 'src/app/shared/services/data-room.service';
 
@@ -16,8 +15,8 @@ import { DataRoomService } from 'src/app/shared/services/data-room.service';
   styleUrls: ['./room.component.scss']
 })
 export class RoomComponent implements OnInit {
-  show_data: [];
-  rooms = [];
+  show_data: any = [];
+  rooms: any = [];
   token: string;
   change = 'lg';
   dataSource: MatTableDataSource<any>;
@@ -111,7 +110,7 @@ export class RoomComponent implements OnInit {
     })
   }
 
-  moveOut(data) {
+  moveOut(data: any) {
     // เอาข้อมูลส่งไปเพิ่ม update ข้อมูลห้อง
     this.dialogService.openDialogConfirm('ย้ายออก***', 'หากทำการดำเนินการต่อจะทำให้ ข้อมูลของผู้เข้าพักทั้งหมดที่เกี่ยวกับห้องนี้หายไปด้วย').afterClosed().subscribe(res => {
       if (res === "true") {
@@ -130,7 +129,7 @@ export class RoomComponent implements OnInit {
     })
   }
 
-  deleteRoom(show_data) {
+  deleteRoom(show_data: any) {
     if (show_data.room_status === "มีผู้เข้าพัก") {
       this.dialogService.openDialogConfirm(`ลบห้อง ${show_data.room_number}***`, `ยืนยันที่จะลบห้องพักใช่หรือไม่ หากลบแล้วจะทำให้ข้อมูลผู้ใช้ในห้อง ${show_data.room_number} หายไปด้วย?`).afterClosed().subscribe(res => {
         if (res === "true") {
@@ -163,7 +162,7 @@ export class RoomComponent implements OnInit {
     }
   }
 
-  viewImg(room_number) {
+  viewImg(room_number: number) {
     this.leaseService.findDataLeaseByRid(this.token, room_number).subscribe((res) => {
       this.dialogService.openDialogViewImgLease(res[0]).afterClosed().subscribe(res => {
       })

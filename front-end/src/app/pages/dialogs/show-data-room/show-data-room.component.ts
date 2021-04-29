@@ -19,16 +19,16 @@ export class ShowDataRoomComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data,
     public dialogRef: MatDialogRef<ShowDataRoomComponent>,
     public dialogService: DialogService,
-    private roomService: RoomService,
-    private dataRoomService: DataRoomService,
-    private leaseService: LeaseService,
-    private authService: AuthService
+    public roomService: RoomService,
+    public dataRoomService: DataRoomService,
+    public leaseService: LeaseService,
+    public authService: AuthService
   ) { }
 
   ngOnInit(): void {
   }
 
-  deleteRoom(show_data) {
+  deleteRoom(show_data: any) {
     if (show_data.room_status === "มีผู้เข้าพัก") {
       this.dialogService.openDialogConfirm(`ลบห้อง ${show_data.room_number}***`, `ยืนยันที่จะลบห้องพักใช่หรือไม่ หากลบแล้วจะทำให้ข้อมูลผู้ใช้ในห้อง ${show_data.room_number} หายไปด้วย?`).afterClosed().subscribe(res => {
         if (res === "true") {
@@ -89,7 +89,7 @@ export class ShowDataRoomComponent implements OnInit {
     })
   }
 
-  viewImg(room_number) {
+  viewImg(room_number : number) {
     this.leaseService.findDataLeaseByRid(this.data.token, room_number).subscribe((res) => {
       this.dialogService.openDialogViewImgLease(res[0]).afterClosed().subscribe(res => {
       })

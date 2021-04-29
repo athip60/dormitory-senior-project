@@ -12,16 +12,16 @@ import { TokenStorageService } from 'src/app/shared/services/token-storage.servi
 })
 export class BlogPostComponent implements OnInit {
   form: any = {};
-  user_data = []
-  post_data = []
+  user_data: any = []
+  post_data: any = []
   userLogin: number
   token: string;
   constructor(
     public tokenStorage: TokenStorageService,
-    private authService: AuthService,
+    public authService: AuthService,
     public dialogService: DialogService,
     public blogService: BlogService,
-    public commentService: CommentService,
+    public commentService: CommentService
   ) { }
 
   ngOnInit(): void {
@@ -72,11 +72,11 @@ export class BlogPostComponent implements OnInit {
     })
   }
 
-  viewComment(id) {
+  viewComment(id: number) {
     this.dialogService.openDialogViewComment(this.token, id, this.userLogin).afterClosed().subscribe(res => { })
   }
 
-  updatePost(data) {
+  updatePost(data: any) {
     this.dialogService.openDialogEditPost(this.token, data).afterClosed().subscribe(res => {
       if (res === true) {
         this.reloadPage()
@@ -84,7 +84,7 @@ export class BlogPostComponent implements OnInit {
     })
   }
 
-  delete(id) {
+  delete(id: number) {
     this.dialogService.openDialogConfirm('ยืนยันโพสต์', 'ยืนยันข้อมูลใช่หรือไม่?').afterClosed().subscribe(res => {
       if (res === "true") {
         this.blogService.deletePost(this.token, id).subscribe(deletePost => {

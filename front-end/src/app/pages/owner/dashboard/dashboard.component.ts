@@ -25,17 +25,17 @@ export class DashboardComponent implements OnInit {
   room_all: any = []
 
   // เก็บสถานะห้องทั้งหมด (มี 3 สถานะ)
-  room_total = [0, 0, 0]
+  room_total: any = [0, 0, 0]
   // รายรับรายจ่าย รายปี
-  creditYear = 0;
-  debitYear = 0;
+  creditYear: number = 0;
+  debitYear: number = 0;
 
   // ตัวแปรที่จำนำรายรับรายจ่ายไปเก็บในกราฟเส้น
-  dataDebitYear = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-  dataCreditYear = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  dataDebitYear: any = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  dataCreditYear: any = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
   // ตัวแปรที่จำนำไว้ไปเก็บในกราฟวงกลม
-  showdataCircle = [0, 0]
+  showdataCircle: any = [0, 0]
 
   // เก็บข้อมูลวันนี้
   today = new Date();
@@ -63,7 +63,7 @@ export class DashboardComponent implements OnInit {
     public blogService: BlogService,
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     // เก็บ token คนที่ login อยู่
     this.token = this.tokenStorage.getToken()
 

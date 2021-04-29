@@ -25,12 +25,12 @@ export interface IncomeElement {
 })
 export class IncomeComponent implements OnInit {
   income_data: any = [];
-  price_all: [];
+  price_all: any = [];
   token: string;
   dateString: string;
   today = new Date();
-  debit = 0;
-  credit = 0;
+  debit: number = 0;
+  credit: number = 0;
   month = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"]
   change = 'lg';
   watcher: Subscription;
@@ -42,8 +42,8 @@ export class IncomeComponent implements OnInit {
   constructor(
     mediaObserver: MediaObserver,
     public dialogService: DialogService,
-    private tokenStorage: TokenStorageService,
-    private incomeService: IncomeService
+    public tokenStorage: TokenStorageService,
+    public incomeService: IncomeService
   ) {
     this.change = 'lg';
     this.watcher = mediaObserver.media$.subscribe((change: MediaChange) => {
@@ -127,9 +127,7 @@ export class IncomeComponent implements OnInit {
     })
   }
 
-  deleteIncome(id) {
-    console.log(id);
-
+  deleteIncome(id: number) {
     this.dialogService.openDialogConfirm("ลบรายการรายรับ - รายจ่าย", "ต้องการลบข้อมูลรายรับ - รายจ่ายใช่หรือไม่?").afterClosed().subscribe(res => {
       if (res === "true") {
         this.incomeService.deleteIncome(this.token, id).subscribe(response => {

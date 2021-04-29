@@ -1,7 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import * as moment from 'moment';
-import { AuthService } from 'src/app/shared/services/auth.service';
 import { TokenStorageService } from 'src/app/shared/services/token-storage.service';
 import { DialogService } from 'src/app/shared/services/dialog.service';
 
@@ -22,10 +21,9 @@ export class GraphDialogComponent implements OnInit {
   constructor(@
     Inject(MAT_DIALOG_DATA) public data,
     public tokenStorage: TokenStorageService,
-    private authService: AuthService,
     public incomeService: IncomeService,
     public dialogRef: MatDialogRef<GraphDialogComponent>,
-    public dialogService: DialogService,
+    public dialogService: DialogService
   ) { }
 
   ngOnInit(): void {

@@ -17,11 +17,11 @@ import * as moment from 'moment';
   styleUrls: ['./lease-agreement.component.scss']
 })
 export class LeaseAgreementComponent implements OnInit {
-  lease_data = []
-  images;
-  successful = 0
-  unsuccessful = 0
-  month = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"]
+  lease_data: any = []
+  images: any;
+  successful: number = 0
+  unsuccessful: number = 0
+  month: any = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"]
   token: string;
   displayedColumns: string[] = ['room', 'status', 'createdAt', 'updatedAt', 'pdf', 'actions'];
   dataSource: MatTableDataSource<any>;
@@ -31,9 +31,9 @@ export class LeaseAgreementComponent implements OnInit {
   statusFilter = new FormControl('');
 
   constructor(
-    private authService: AuthService,
-    private leaseService: LeaseService,
-    private tokenStorage: TokenStorageService,
+    public authService: AuthService,
+    public leaseService: LeaseService,
+    public tokenStorage: TokenStorageService,
     public dialogService: DialogService
   ) { }
 
@@ -65,7 +65,7 @@ export class LeaseAgreementComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  makePdfLease(data, option = 'open') {
+  makePdfLease(data: any, option = 'open') {
     this.authService.findById(data.user_id, this.token).subscribe((response) => {
       pdfMake.vfs = pdfFonts.pdfMake.vfs;
       pdfMake.fonts = {

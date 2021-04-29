@@ -21,13 +21,13 @@ import { NotifyService } from 'src/app/shared/services/notify.service';
 })
 export class BillGuestComponent implements OnInit {
   token: string;
-  data_bill: [];
-  change = 'lg';
-  watcher: Subscription;
-  totalCost = 0;
-  totalUnit = 0;
+  data_bill: any = [];
+  totalCost: number = 0;
+  totalUnit: number = 0;
   dateString: string;
   today = new Date();
+  change = 'lg';
+  watcher: Subscription;
   month = ["เดือนมกราคม", "เดือนกุมภาพันธ์", "เดือนมีนาคม", "เดือนเมษายน", "เดือนพฤษภาคม", "เดือนมิถุนายน", "เดือนกรกฎาคม", "เดือนสิงหาคม", "เดือนกันยายน", "เดือนตุลาคม", "เดือนพฤศจิกายน", "เดือนธันวาคม"]
   displayedColumns: string[] = ['status_bill', 'createdAt', 'total_cost', 'pdf', 'actions'];
   dataSource: MatTableDataSource<any>;
@@ -36,11 +36,11 @@ export class BillGuestComponent implements OnInit {
 
   constructor(
     mediaObserver: MediaObserver,
-    private authService: AuthService,
-    private billService: BillService,
-    private notifyService: NotifyService,
-    private dialogService: DialogService,
-    private tokenStorage: TokenStorageService,
+    public authService: AuthService,
+    public billService: BillService,
+    public notifyService: NotifyService,
+    public dialogService: DialogService,
+    public tokenStorage: TokenStorageService,
     public router: Router,
     public datepipe: DatePipe
   ) {
@@ -82,7 +82,7 @@ export class BillGuestComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  ThaiBaht(total_cost) {
+  ThaiBaht(total_cost: any) {
     var textNumArr = new Array("ศูนย์", "หนึ่ง", "สอง", "สาม", "สี่", "ห้า", "หก", "เจ็ด", "แปด", "เก้า", "สิบ");
     var textDigitArr = new Array("", "สิบ", "ร้อย", "พัน", "หมื่น", "แสน", "ล้าน");
     var bahtText = '';
@@ -126,7 +126,7 @@ export class BillGuestComponent implements OnInit {
     return bahtText;
   }
 
-  makePdfBill(data, option = 'open') {
+  makePdfBill(data: any, option = 'open') {
     pdfMake.vfs = pdfFonts.pdfMake.vfs;
     pdfMake.fonts = {
       THSarabunNew: {
@@ -360,7 +360,7 @@ export class BillGuestComponent implements OnInit {
     }
   }
 
-  uploadBill(data, header) {
+  uploadBill(data: any, header: any) {
     this.dialogService.openDialogUploadBill(this.token, data, header).afterClosed().subscribe(res => {
       if (res === true) {
         this.reloadPage()
@@ -368,7 +368,7 @@ export class BillGuestComponent implements OnInit {
     })
   }
 
-  sendToGuest(data) {
+  sendToOwner(data: any) {
     this.dialogService.openDialogConfirm(`ส่งใบแจ้งชำระเงินให้ผู้เจ้าของหอพัก`, `ยืนยันที่จะส่งใบแจ้งชำระเงินให้ผู้เจ้าของหอพักหรือไม่?`).afterClosed().subscribe(res => {
       if (res === "true") {
         this.billService.updateBillGuest(data.id, { bill_status: 'รอการตรวจสอบจากเจ้าของหอพัก' }, this.token).subscribe((afterSend) => {
@@ -389,7 +389,7 @@ export class BillGuestComponent implements OnInit {
     })
   }
 
-  viewBill(data) {
+  viewBill(data: any) {
     this.dialogService.openDialogViewImgBill(data).afterClosed().subscribe(res => {
     })
   }

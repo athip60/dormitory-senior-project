@@ -13,15 +13,15 @@ import { TokenStorageService } from 'src/app/shared/services/token-storage.servi
 })
 export class LoginComponent implements OnInit {
   form: any = {};
-  errorMessage = '';
-  roles: string[] = [];
-  hide = true;
+  errorMessage: string = '';
+  roles: string[];
+  hide: boolean = true;
   change = 'lg';
   watcher: Subscription;
 
   constructor(
     public authService: AuthService,
-    private tokenStorage: TokenStorageService,
+    public tokenStorage: TokenStorageService,
     public router: Router,
     public dialogService: DialogService,
     mediaObserver: MediaObserver,

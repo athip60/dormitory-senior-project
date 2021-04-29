@@ -12,20 +12,19 @@ import { DialogService } from 'src/app/shared/services/dialog.service';
 export class EditPostComponent implements OnInit {
   progressBar = false;
   form: any = {};
-  user_data = []
+  user_data: any = []
   constructor(
     @Inject(MAT_DIALOG_DATA) public data,
     public dialogRef: MatDialogRef<EditPostComponent>,
     public dialogService: DialogService,
     public blogService: BlogService,
-    private authService: AuthService
+    public authService: AuthService
   ) { }
 
   ngOnInit(): void {
     this.authService.findGuestAll(this.data.token).subscribe(response => {
       this.user_data = response;
     })
-
     this.form = this.data.data
   }
 

@@ -12,12 +12,12 @@ import { TokenStorageService } from 'src/app/shared/services/token-storage.servi
   styleUrls: ['./view-comment.component.scss']
 })
 export class ViewCommentComponent implements OnInit {
-  comment_data = []
+  comment_data: any = []
   form: any = {};
   constructor(@
     Inject(MAT_DIALOG_DATA) public data,
     public tokenStorage: TokenStorageService,
-    private authService: AuthService,
+    public authService: AuthService,
     public dialogRef: MatDialogRef<ViewCommentComponent>,
     public dialogService: DialogService,
     public blogService: BlogService,
@@ -41,7 +41,7 @@ export class ViewCommentComponent implements OnInit {
 
   }
 
-  onSubmit() {
+  onSubmit(): void {
     const user = this.tokenStorage.getUser();
     this.form['user_comment'] = parseInt(user.id)
     this.form['post_id'] = parseInt(this.data.id)
@@ -54,12 +54,12 @@ export class ViewCommentComponent implements OnInit {
     this.dialogRef.close(false)
   }
 
-  updateComment(data) {
-    this.dialogService.openDialogEditComment(this.data.token, data).afterClosed().subscribe(res => { 
+  updateComment(data: any) {
+    this.dialogService.openDialogEditComment(this.data.token, data).afterClosed().subscribe(res => {
     })
   }
 
-  delete(id) {
+  delete(id: number) {
     this.dialogService.openDialogConfirm('ลบคอมเม้นต์', 'ยืนยันข้อมูลใช่หรือไม่?').afterClosed().subscribe(res => {
       if (res === "true") {
         this.commentService.deleteComment(this.data.token, id).subscribe(response => {

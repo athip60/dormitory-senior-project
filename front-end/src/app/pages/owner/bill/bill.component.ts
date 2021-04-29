@@ -28,11 +28,11 @@ const dateObj = new Date();
 
 export class BillComponent implements OnInit {
   token: string;
-  data_bill: [];
+  data_bill: any = [];
   change = 'lg';
   dateString: string;
-  billSuccess = 0;
-  billUnsuccess = 0;
+  billSuccess: number = 0;
+  billUnsuccess: number = 0;
   today = new Date();
   month = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"]
   watcher: Subscription;
@@ -43,16 +43,16 @@ export class BillComponent implements OnInit {
 
   constructor(
     mediaObserver: MediaObserver,
-    private authService: AuthService,
-    private roomService: RoomService,
-    private dataRoomService: DataRoomService,
-    private billService: BillService,
-    private dialogService: DialogService,
-    private notifyService: NotifyService,
-    private tokenStorage: TokenStorageService,
+    public authService: AuthService,
+    public roomService: RoomService,
+    public tokenStorage: TokenStorageService,
+    public dataRoomService: DataRoomService,
+    public dialogService: DialogService,
+    public billService: BillService,
+    public notifyService: NotifyService,
     public router: Router,
     public datepipe: DatePipe,
-    private incomeService: IncomeService
+    public incomeService: IncomeService
   ) {
     this.change = 'lg';
     this.watcher = mediaObserver.media$.subscribe((change: MediaChange) => {
@@ -410,7 +410,7 @@ export class BillComponent implements OnInit {
     })
   }
 
-  sendToGuest(id, user_id) {
+  sendToGuest(id: number, user_id: number) {
     this.dialogService.openDialogConfirm('ส่งให้ผู้เข้าพัก', 'หากกดส่งแล้วจะไม่สามารถแก้ไขข้อมูลได้ ยืนยันการทำรายการหรือไม่').afterClosed().subscribe(res => {
       if (res === "true") {
         this.billService.updateBill(id, { bill_status: 'รอผู้เข้าพักอัพโหลดข้อมูลการชำระเงิน' }, this.token).subscribe((afterSend) => {
@@ -436,7 +436,7 @@ export class BillComponent implements OnInit {
     })
   }
 
-  confirmBill(data, id, user_id) {
+  confirmBill(data: any, id: number, user_id: number) {
     let bill_income = {
       date_program: (dateObj.getUTCFullYear()) + "-" + (dateObj.getMonth() + 1) + "-" + (dateObj.getUTCDate()),
       program: `ค่าเช่าห้อง ห้อง ${data.room_number}`,

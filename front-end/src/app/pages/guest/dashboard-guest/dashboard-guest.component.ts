@@ -14,15 +14,15 @@ import { TokenStorageService } from 'src/app/shared/services/token-storage.servi
 })
 export class DashboardGuestComponent implements OnInit {
   form: any = {};
-  post_data = []
+  post_data: any = []
   userLogin: number
-  totalCost = 0;
-  overdue = 0;
+  totalCost: number = 0;
+  overdue: number = 0;
   token: string;
   constructor(
     public tokenStorage: TokenStorageService,
-    private authService: AuthService,
-    private billService: BillService,
+    public authService: AuthService,
+    public billService: BillService,
     public dialogService: DialogService,
     public blogService: BlogService,
     public commentService: CommentService,
@@ -56,7 +56,7 @@ export class DashboardGuestComponent implements OnInit {
     });
     this.billService.findGuest(user.id, this.token).subscribe(dataBills => {
       console.log(dataBills);
-      
+
       dataBills.forEach(data => {
         if (data.bill_status === "ชำระเงินเรียบร้อย") {
           this.totalCost += data.total_cost
@@ -67,7 +67,7 @@ export class DashboardGuestComponent implements OnInit {
       });
     })
   }
-  onSubmit() {
+  onSubmit(): void {
     this.dialogService.openDialogConfirm('ยืนยันโพสต์', 'ยืนยันข้อมูลใช่หรือไม่?').afterClosed().subscribe(res => {
       if (res === "true") {
         const user = this.tokenStorage.getUser();
@@ -84,11 +84,11 @@ export class DashboardGuestComponent implements OnInit {
     })
   }
 
-  viewComment(id) {
+  viewComment(id: number) {
     this.dialogService.openDialogViewComment(this.token, id, this.userLogin).afterClosed().subscribe(res => { })
   }
 
-  updatePost(data) {
+  updatePost(data: any) {
     this.dialogService.openDialogEditPost(this.token, data).afterClosed().subscribe(res => {
       if (res === true) {
         this.reloadPage()
@@ -96,7 +96,7 @@ export class DashboardGuestComponent implements OnInit {
     })
   }
 
-  delete(id) {
+  delete(id: number) {
     this.dialogService.openDialogConfirm('ยืนยันโพสต์', 'ยืนยันข้อมูลใช่หรือไม่?').afterClosed().subscribe(res => {
       if (res === "true") {
         this.blogService.deletePost(this.token, id).subscribe(deletePost => {

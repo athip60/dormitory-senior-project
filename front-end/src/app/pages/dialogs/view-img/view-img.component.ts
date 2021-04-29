@@ -1,8 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { HttpClient } from '@angular/common/http';
-import { LeaseService } from 'src/app/shared/services/lease.service';
-import { DialogService } from 'src/app/shared/services/dialog.service';
 
 @Component({
   selector: 'app-view-img',
@@ -30,10 +27,7 @@ export class ViewImgComponent implements OnInit {
   
   constructor(@
     Inject(MAT_DIALOG_DATA) public data,
-    public dialogRef: MatDialogRef<ViewImgComponent>,
-    public dialogService: DialogService,
-    public leaseService: LeaseService,
-    private http: HttpClient
+    public dialogRef: MatDialogRef<ViewImgComponent>
   ) { }
 
   ngOnInit(): void {
@@ -46,5 +40,4 @@ export class ViewImgComponent implements OnInit {
     this.currentIndex = -1;
     this.dialogRef.close(false)
   }
-
 }

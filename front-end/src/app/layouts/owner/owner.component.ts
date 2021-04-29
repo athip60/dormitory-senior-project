@@ -12,11 +12,11 @@ import { NotifyService } from 'src/app/shared/services/notify.service';
   styleUrls: ['./owner.component.scss']
 })
 export class OwnerComponent implements OnInit {
-  private roles: string[];
+  roles: string[];
   data_notify: string[];
-  count_unread = 0;
-  isBadgeHidden = false
-  isLoggedIn = false;
+  count_unread: number = 0;
+  isBadgeHidden: boolean = false
+  isLoggedIn: boolean = false;
   showNotification: boolean;
   name: string;
   surname: string;

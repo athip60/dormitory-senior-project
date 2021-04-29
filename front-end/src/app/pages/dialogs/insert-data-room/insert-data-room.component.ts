@@ -12,15 +12,15 @@ import { RoomService } from 'src/app/shared/services/room.service';
   styleUrls: ['./insert-data-room.component.scss']
 })
 export class InsertDataRoomComponent implements OnInit {
-  user_data = []
+  user_data: any = []
   progressBar = false;
   form: any = {};
   constructor(
     @Inject(MAT_DIALOG_DATA) public data,
-    private authService: AuthService,
+    public authService: AuthService,
     public dialogRef: MatDialogRef<InsertDataRoomComponent>,
-    private roomService: RoomService,
-    private dataRoomService: DataRoomService,
+    public roomService: RoomService,
+    public dataRoomService: DataRoomService,
     public dialogService: DialogService,
     public leaseService: LeaseService
   ) { }
