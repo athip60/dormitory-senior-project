@@ -29,7 +29,7 @@ module.exports = function (app) {
     [authJwt.verifyToken, authJwt.isOwner],
     controller.findallbyDRID
   );
-  
+
   app.put(
     "/api/bill/update/:id",
     [authJwt.verifyToken, authJwt.isOwner],
@@ -42,14 +42,11 @@ module.exports = function (app) {
     controller.delete
   );
 
-  app.get(
-    "/api/bill-guest/:id",
-    controller.findGuest
-  );
+  app.get("/api/bill-guest/:id", controller.findGuest);
 
   const storage = multer.diskStorage({
     destination: (req, file, callBack) => {
-      callBack(null, "../front-end/src/assets/uploads/lease");
+      callBack(null, "../front-end/src/assets/uploads/bills");
     },
     filename: (req, file, callBack) => {
       callBack(null, `Bill_${req.params.id}.jpg`);
@@ -58,13 +55,13 @@ module.exports = function (app) {
 
   const upload = multer({ storage: storage });
 
-  app.post("/api/bill/upload-payment/:id", upload.single("file"), controller.uploadImg);
+  app.post(
+    "/api/bill/upload-payment/:id",
+    upload.single("file"),
+    [authJwt.verifyToken, authJwt.isGuest],
+    controller.uploadImg
+  );
 
-  // app.put(
-  //   "/api/bill/upload-payment/:id",
-  //   [authJwt.verifyToken, authJwt.isGuest],
-  //   controller.uploadBillFile
-  // );
   app.put(
     "/api/bill/update-guest/:id",
     [authJwt.verifyToken, authJwt.isGuest],

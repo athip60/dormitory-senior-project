@@ -39,6 +39,17 @@ export class LeaseService {
     return this.http.get(`${LEASE_API}${rid}`, { headers: { 'x-access-token': JSON.parse(JSON.stringify(token)) } });
   }
 
+  postPhotoLease1(token, data, id): Observable<any> {
+    return this.http.post(`${LEASE_API}img1/${id}`, data, { headers: { 'x-access-token': JSON.parse(JSON.stringify(token)) } });
+  }
+
+  postPhotoLease2(token, data, id): Observable<any> {
+    return this.http.post(`${LEASE_API}img2/${id}`, data, { headers: { 'x-access-token': JSON.parse(JSON.stringify(token)) } });
+  }
+
+  postPhotoLease3(token, data, id): Observable<any> {
+    return this.http.post(`${LEASE_API}img3/${id}`, data, { headers: { 'x-access-token': JSON.parse(JSON.stringify(token)) } });
+  }
   uploadPhotoLease1(token, data, id): Observable<any> {
     return this.http.put(`${LEASE_API}upload/img1/${id}`, data, { headers: { 'x-access-token': JSON.parse(JSON.stringify(token)) } });
   }

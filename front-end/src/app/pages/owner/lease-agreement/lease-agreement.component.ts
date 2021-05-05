@@ -369,15 +369,15 @@ export class LeaseAgreementComponent implements OnInit {
   addUpdatePhoto(data) {
     if (data.photo_1 != null && data.photo_2 != null && data.photo_3 != null) {
       this.dialogService.openDialogAddPhotoLease(this.token, 'แก้ไขรูปสัญญาเช่าห้อง', 'แก้ไขข้อมูล', data).afterClosed().subscribe(res => {
-        if (res === true) {
-          this.reloadPage()
-        }
+        // if (res === true) {
+        //   this.reloadPage()
+        // }
       })
     } else {
       this.dialogService.openDialogAddPhotoLease(this.token, 'เพิ่มรูปข้อมูลสัญญาห้อง', 'บันทึกข้อมูล', data).afterClosed().subscribe(res => {
-        if (res === true) {
-          this.reloadPage()
-        }
+        // if (res === true) {
+        //   this.reloadPage()
+        // }
       })
     }
   }

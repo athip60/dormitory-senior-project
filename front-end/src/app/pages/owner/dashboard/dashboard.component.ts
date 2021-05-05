@@ -10,7 +10,6 @@ import { DialogService } from 'src/app/shared/services/dialog.service';
 
 import { RoomService } from 'src/app/shared/services/room.service';
 import { IncomeService } from 'src/app/shared/services/income.service';
-import { BlogService } from 'src/app/shared/services/blog.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -60,7 +59,6 @@ export class DashboardComponent implements OnInit {
     public tokenStorage: TokenStorageService,
     public incomeService: IncomeService,
     public dialogService: DialogService,
-    public blogService: BlogService,
   ) { }
 
   ngOnInit(): void {

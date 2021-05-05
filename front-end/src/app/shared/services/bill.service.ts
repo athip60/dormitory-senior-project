@@ -32,6 +32,10 @@ export class BillService {
     return this.http.put(`${BILL_API}update/${id}`, data, { headers: { 'x-access-token': JSON.parse(JSON.stringify(token)) } });
   }
 
+  uploadBillGuest(id, data, token): Observable<any> {
+    return this.http.post(`${BILL_API}upload-payment/${id}`, data, { headers: { 'x-access-token': JSON.parse(JSON.stringify(token)) } });
+  }
+
   updateBillGuest(id, data, token): Observable<any> {
     return this.http.put(`${BILL_API}update-guest/${id}`, data, { headers: { 'x-access-token': JSON.parse(JSON.stringify(token)) } });
   }

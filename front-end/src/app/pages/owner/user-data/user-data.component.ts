@@ -6,7 +6,6 @@ import { DialogService } from 'src/app/shared/services/dialog.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { TokenStorageService } from 'src/app/shared/services/token-storage.service';
 import { RoomService } from 'src/app/shared/services/room.service';
-import { BillService } from 'src/app/shared/services/bill.service';
 import { LeaseService } from 'src/app/shared/services/lease.service';
 import * as moment from 'moment';
 import { DataRoomService } from 'src/app/shared/services/data-room.service';
@@ -18,7 +17,7 @@ import { DataRoomService } from 'src/app/shared/services/data-room.service';
 })
 
 export class UserDataComponent implements OnInit {
-  user_data: [];
+  user_data: any = [];
   token: string;
   month = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"]
   displayedColumns: string[] = ['room', 'email', 'fulname', 'tel', 'role', 'bill', 'lease', 'createdAt', 'actions'];
@@ -32,7 +31,6 @@ export class UserDataComponent implements OnInit {
     public tokenStorage: TokenStorageService,
     public roomService: RoomService,
     public dataRoomService: DataRoomService,
-    public billService: BillService,
     public leaseService: LeaseService
   ) { }
 

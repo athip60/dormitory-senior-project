@@ -148,7 +148,7 @@ export class BillComponent implements OnInit {
     return bahtText;
   }
 
-  makePdfBill(data, option = 'open') {
+  makePdfBill(data: any, option = 'open') {
     pdfMake.vfs = pdfFonts.pdfMake.vfs;
     pdfMake.fonts = {
       THSarabunNew: {
@@ -390,7 +390,7 @@ export class BillComponent implements OnInit {
     })
   }
 
-  editBill(data) {
+  editBill(data: any) {
     this.dialogService.openDialogEditbill(data, this.token).afterClosed().subscribe(res => {
       if (res === true) {
         this.reloadPage()
@@ -398,7 +398,7 @@ export class BillComponent implements OnInit {
     })
   }
 
-  deleteBill(id) {
+  deleteBill(id: number) {
     this.dialogService.openDialogConfirm('ลบใบแจ้งชำระเงิน', 'ต้องการลบข้อมูล ใบแจ้งชำระเงินหรือไม่').afterClosed().subscribe(res => {
       if (res === "true") {
         this.billService.deleteBill(id, this.token).subscribe((afterDelete) => {

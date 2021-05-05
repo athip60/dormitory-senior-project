@@ -58,9 +58,24 @@ module.exports = function (app) {
 
   const upload = multer({ storage: storage });
 
-  app.post("/api/lease/img1/:id", upload.single("file"), controller.uploadImg);
-  app.post("/api/lease/img2/:id", upload.single("file"), controller.uploadImg);
-  app.post("/api/lease/img3/:id", upload.single("file"), controller.uploadImg);
+  app.post(
+    "/api/lease/img1/:id",
+    upload.single("file"),
+    [authJwt.verifyToken, authJwt.isOwner],
+    controller.uploadImg
+  );
+  app.post(
+    "/api/lease/img2/:id",
+    upload.single("file"),
+    [authJwt.verifyToken, authJwt.isOwner],
+    controller.uploadImg
+  );
+  app.post(
+    "/api/lease/img3/:id",
+    upload.single("file"),
+    [authJwt.verifyToken, authJwt.isOwner],
+    controller.uploadImg
+  );
 
   app.put(
     "/api/lease/upload/img1/:id",

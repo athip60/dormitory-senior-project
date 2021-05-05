@@ -1,6 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { HttpClient } from '@angular/common/http';
 import { DialogService } from 'src/app/shared/services/dialog.service';
 import { LeaseService } from 'src/app/shared/services/lease.service';
 
@@ -22,8 +21,7 @@ export class AddUpdateImgComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data,
     public dialogRef: MatDialogRef<AddUpdateImgComponent>,
     public dialogService: DialogService,
-    public leaseService: LeaseService,
-    private http: HttpClient
+    public leaseService: LeaseService
   ) { }
 
   ngOnInit(): void {
@@ -78,43 +76,24 @@ export class AddUpdateImgComponent implements OnInit {
 
   onSubmit() {
     this.progressBar = true;
-    for (let i = 0; i < 3; i++) {
-      if (i == 0) {
-        const formData = new FormData();
-        formData.append('file', this.image1);
-        this.http.post<any>(`http://localhost:8080/api/lease/img1/${this.data.data.room_number + '_1'}`, formData).subscribe((res) => {
-          this.leaseService.uploadPhotoLease1(this.data.token, res, this.data.data.id).subscribe((res) => {
-          })
-        },
-          (err) => console.log(err)
-        );
-      }
-      else if (i == 1) {
-        const formData = new FormData();
-        formData.append('file', this.image2);
-        this.http.post<any>(`http://localhost:8080/api/lease/img2/${this.data.data.room_number + '_2'}`, formData).subscribe((res) => {
-          this.leaseService.uploadPhotoLease2(this.data.token, res, this.data.data.id).subscribe((res) => {
-          })
-        },
-          (err) => console.log(err)
-        );
-      }
-      else if (i == 2) {
-        const formData = new FormData();
-        formData.append('file', this.image3);
-        this.http.post<any>(`http://localhost:8080/api/lease/img3/${this.data.data.room_number + '_3'}`, formData).subscribe((res) => {
-
-
-          this.leaseService.uploadPhotoLease3(this.data.token, res, this.data.data.id).subscribe((res) => {
-            console.log(res);
-
-            this.dialogRef.close(true)
-          })
-        },
-          (err) => console.log(err)
-        );
-      }
-    }
+    const formData1 = new FormData();
+    const formData2 = new FormData();
+    const formData3 = new FormData();
+    formData1.append('file', this.image1);
+    formData2.append('file', this.image2);
+    formData3.append('file', this.image3);
+    this.leaseService.postPhotoLease1(this.data.token, formData1, this.data.data.room_number + '_1').subscribe((file) => {
+      this.leaseService.uploadPhotoLease1(this.data.token, file, this.data.data.id).subscribe((res) => {
+      })
+    })
+    this.leaseService.postPhotoLease2(this.data.token, formData1, this.data.data.room_number + '_2').subscribe((file) => {
+      this.leaseService.uploadPhotoLease2(this.data.token, file, this.data.data.id).subscribe((res) => {
+      })
+    })
+    this.leaseService.postPhotoLease3(this.data.token, formData1, this.data.data.room_number + '_3').subscribe((file) => {
+      this.leaseService.uploadPhotoLease3(this.data.token, file, this.data.data.id).subscribe((res) => {
+      })
+    })
   }
 
   closeDialog() {

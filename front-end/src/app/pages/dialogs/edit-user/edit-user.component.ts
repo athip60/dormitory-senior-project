@@ -1,7 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { AuthService } from 'src/app/shared/services/auth.service';
-import { BillService } from 'src/app/shared/services/bill.service';
 import { DataRoomService } from 'src/app/shared/services/data-room.service';
 import { DialogService } from 'src/app/shared/services/dialog.service';
 import { LeaseService } from 'src/app/shared/services/lease.service';
@@ -22,7 +21,6 @@ export class EditUserComponent implements OnInit {
     public dialogService: DialogService,
     public roomService: RoomService,
     public dataRoomService: DataRoomService,
-    public billService: BillService,
     public leaseService: LeaseService
   ) { }
 

@@ -1,6 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { BlogService } from 'src/app/shared/services/blog.service';
 import { CommentService } from 'src/app/shared/services/comment.service';
 import { DialogService } from 'src/app/shared/services/dialog.service';
 
@@ -16,7 +15,6 @@ export class EditCommentComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data,
     public dialogRef: MatDialogRef<EditCommentComponent>,
     public dialogService: DialogService,
-    public blogService: BlogService,
     public commentService: CommentService
   ) { }
 

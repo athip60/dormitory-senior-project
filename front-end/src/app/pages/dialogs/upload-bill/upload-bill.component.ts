@@ -53,7 +53,7 @@ export class UploadBillComponent implements OnInit {
         const formData = new FormData();
         formData.append('file', this.image1);
         let latest_date = this.datepipe.transform(this.data.data.createdAt, 'yyyy-MM');
-        this.http.post<any>(`http://localhost:8080/api/bill/upload-payment/${this.data.data.room_number + '_' + this.data.data.user_in_room + '_' + latest_date}`, formData).subscribe((res) => {
+        this.billService.uploadBillGuest(this.data.data.room_number + '_' + this.data.data.user_in_room + '_' + latest_date, formData, this.data.token).subscribe((res) => {
           if (res) {
             this.billService.updateBillGuest(this.data.data.id, { img_payment: res.filename, payment_status: 'รอการตรวจสอบ', bill_status: 'รอการส่งกลับให้เจ้าของหอพัก' }, this.data.token).subscribe((res) => {
               this.dialogRef.close(true)

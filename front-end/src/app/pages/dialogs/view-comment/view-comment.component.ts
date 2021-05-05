@@ -1,7 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { AuthService } from 'src/app/shared/services/auth.service';
-import { BlogService } from 'src/app/shared/services/blog.service';
 import { CommentService } from 'src/app/shared/services/comment.service';
 import { DialogService } from 'src/app/shared/services/dialog.service';
 import { TokenStorageService } from 'src/app/shared/services/token-storage.service';
@@ -20,7 +19,6 @@ export class ViewCommentComponent implements OnInit {
     public authService: AuthService,
     public dialogRef: MatDialogRef<ViewCommentComponent>,
     public dialogService: DialogService,
-    public blogService: BlogService,
     public commentService: CommentService,
   ) { }
 
