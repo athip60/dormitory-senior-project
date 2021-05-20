@@ -36,7 +36,6 @@ export class ViewCommentComponent implements OnInit {
         })
       }
     })
-
   }
 
   onSubmit(): void {

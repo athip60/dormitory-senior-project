@@ -179,7 +179,7 @@
       </ng-container>
       <!-- Pdf function -->
       <ng-container matColumnDef="pdf">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>PDF Functions</th>
+        <th mat-header-cell *matHeaderCellDef>ส่งออกเอกสารในรูปแบบ PDF</th>
         <td mat-cell *matCellDef="let data">
           <div style="text-align: center">
             <button
@@ -214,7 +214,7 @@
       </ng-container>
       <!-- button -->
       <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Functions</th>
+        <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let data">
           <div style="text-align: center">
             <ng-container *ngIf="data.photo_1 && data.photo_2; else is_null">

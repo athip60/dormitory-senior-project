@@ -96,6 +96,7 @@ export class DashboardComponent implements OnInit {
       this.room_total[0] = empty_room
       this.room_total[1] = room
       this.room_total[2] = usable
+      
     })
 
     // กำหนดค่ามาเก็บใส่ไว้ในกราฟวงกลม
@@ -254,14 +255,14 @@ export class DashboardComponent implements OnInit {
           data: this.room_total,
           fill: false,
           backgroundColor: [
+            'rgb(204, 204, 204)',
+            '#2bc98f',
             'rgb(255, 99, 132)',
-            'rgb(255, 159, 64)',
-            'rgb(255, 205, 86)',
           ],
           borderColor: [
+            'rgb(204, 204, 204)',
+            '#2bc98f',
             'rgb(255, 99, 132)',
-            'rgb(255, 159, 64)',
-            'rgb(255, 205, 86)',
           ],
           borderWidth: 1
         }]

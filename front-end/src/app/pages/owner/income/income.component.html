@@ -21,13 +21,13 @@
             </div>
             <div style="margin-top: 50px; display: flex">
               <div style="color: white; font-size: 1.15rem; margin-right: 10px">
-                รายรับเดือนนี้ : {{ credit | currency }}
+                รายรับเดือนนี้ : {{ credit | currency:"THB":"symbol-narrow" }}
               </div>
               <div
                 style="color: white; font-size: 1.15rem; margin-right: 25px"
               ></div>
               <div style="color: white; font-size: 1.15rem; margin-right: 10px">
-                รายจ่ายเดือนนี้ : {{ debit | currency }}
+                รายจ่ายเดือนนี้ : {{ debit | currency:"THB":"symbol-narrow" }}
               </div>
               <div style="color: white; font-size: 1.15rem"></div>
             </div>
@@ -116,7 +116,7 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header>รายรับ</th>
         <td mat-cell *matCellDef="let data">
           <div style="text-align: center">
-            {{ data.credit | currency }}
+            {{ data.credit | currency:"THB":"symbol-narrow" }}
           </div>
         </td>
         <td mat-footer-cell *matFooterCellDef>
@@ -128,7 +128,7 @@
               font-size: 1.07rem;
             "
           >
-            {{ getCredit() | currency }}
+            {{ getCredit() | currency:"THB":"symbol-narrow" }}
           </div>
         </td>
       </ng-container>
@@ -136,7 +136,7 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header>รายจ่าย</th>
         <td mat-cell *matCellDef="let data">
           <div style="text-align: center">
-            {{ data.debit | currency }}
+            {{ data.debit | currency:"THB":"symbol-narrow" }}
           </div>
         </td>
         <td mat-footer-cell *matFooterCellDef>
@@ -148,7 +148,7 @@
               font-size: 1.07rem;
             "
           >
-            {{ getDebit() | currency }}
+            {{ getDebit() | currency:"THB":"symbol-narrow" }}
           </div>
         </td>
       </ng-container>
@@ -157,7 +157,7 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header>คงเหลือ</th>
         <td mat-cell *matCellDef="let data">
           <div style="text-align: center">
-            {{ data.balance | currency }}
+            {{ data.balance | currency:"THB":"symbol-narrow" }}
           </div>
         </td>
         <td mat-footer-cell *matFooterCellDef>
@@ -169,7 +169,7 @@
               font-size: 1.07rem;
             "
           >
-            {{ getBalance() | currency }}
+            {{ getBalance() | currency:"THB":"symbol-narrow" }}
           </div>
         </td>
       </ng-container>

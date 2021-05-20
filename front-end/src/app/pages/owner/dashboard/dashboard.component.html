@@ -24,7 +24,7 @@
                 รายรับปี {{ year + 543 }}
               </p>
               <p style="color: #000000; font-size: 1.6rem; text-align: right">
-                {{ creditYear | currency }}
+                {{ creditYear | currency:"THB":"symbol-narrow" }}
               </p>
             </div>
           </div>
@@ -55,7 +55,7 @@
                 รายจ่ายปี {{ year + 543 }}
               </p>
               <p style="color: #000000; font-size: 1.6rem; text-align: right">
-                {{ debitYear | currency }}
+                {{ debitYear | currency:"THB":"symbol-narrow" }}
               </p>
             </div>
           </div>

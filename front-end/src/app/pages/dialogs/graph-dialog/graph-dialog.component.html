@@ -33,7 +33,7 @@
                   รายรับ
                 </p>
                 <p style="color: #000000; font-size: 1.6rem; text-align: right">
-                  {{ data.dataMonth[0] | currency }}
+                  {{ data.dataMonth[0] | currency:"THB":"symbol-narrow" }}
                 </p>
               </div>
             </div>
@@ -61,7 +61,7 @@
                   รายจ่าย
                 </p>
                 <p style="color: #000000; font-size: 1.6rem; text-align: right">
-                  {{ data.dataMonth[1] | currency }}
+                  {{ data.dataMonth[1] | currency:"THB":"symbol-narrow" }}
                 </p>
               </div>
             </div>
@@ -81,8 +81,8 @@
         <tr *ngFor="let data of monthInconme">
           <td>{{ data.date }}</td>
           <td>{{ data.program }}</td>
-          <td>{{ data.credit | currency }}</td>
-          <td>{{ data.debit | currency }}</td>
+          <td>{{ data.credit | currency:"THB":"symbol-narrow" }}</td>
+          <td>{{ data.debit | currency:"THB":"symbol-narrow" }}</td>
         </tr>
       </table>
     </div>
@@ -123,7 +123,7 @@
                   รายรับ
                 </p>
                 <p style="color: #000000; font-size: 1.6rem; text-align: right">
-                  {{ data.creditYear | currency }}
+                  {{ data.creditYear | currency:"THB":"symbol-narrow" }}
                 </p>
               </div>
             </div>
@@ -151,7 +151,7 @@
                   รายจ่าย
                 </p>
                 <p style="color: #000000; font-size: 1.6rem; text-align: right">
-                  {{ data.debitYear | currency }}
+                  {{ data.debitYear | currency:"THB":"symbol-narrow" }}
                 </p>
               </div>
             </div>
@@ -172,7 +172,7 @@
           <ng-container *ngIf="data.credit !== 0">
             <td>{{ data.date }}</td>
             <td>{{ data.program }}</td>
-            <td>{{ data.credit | currency }}</td>
+            <td>{{ data.credit | currency:"THB":"symbol-narrow" }}</td>
           </ng-container>
         </tr>
       </table>
@@ -187,7 +187,7 @@
           <ng-container *ngIf="data.debit !== 0">
             <td>{{ data.date }}</td>
             <td>{{ data.program }}</td>
-            <td>{{ data.debit | currency }}</td>
+            <td>{{ data.debit | currency:"THB":"symbol-narrow" }}</td>
           </ng-container>
         </tr>
       </table>

@@ -40,7 +40,6 @@ export class BlogPostComponent implements OnInit {
         if (this.post_data[index].send_from) {
           this.authService.findById(this.post_data[index].send_from, this.token).subscribe(response => {
             if (response) {
-              console.log('test');
               this.post_data[index]['name_user_send_from'] = response.name + ' ' + response.surname
             }
             else {
@@ -53,7 +52,6 @@ export class BlogPostComponent implements OnInit {
         }
       }
     });
-
   }
   onSubmit() {
     this.dialogService.openDialogConfirm('ยืนยันโพสต์', 'ยืนยันข้อมูลใช่หรือไม่?').afterClosed().subscribe(res => {
@@ -63,8 +61,6 @@ export class BlogPostComponent implements OnInit {
         if (this.form.send_from) {
           this.form.send_from = parseInt(this.form.send_from)
         }
-        console.log(this.form);
-
         this.blogService.createPost(this.token, this.form).subscribe(response => {
           this.reloadPage()
         })

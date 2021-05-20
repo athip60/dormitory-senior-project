@@ -10,15 +10,13 @@ import { NgImageFullscreenViewModule } from 'ng-image-fullscreen-view';
 import { RouterModule } from '@angular/router';
 import { DashboardGuestComponent } from 'src/app/pages/guest/dashboard-guest/dashboard-guest.component';
 import { BillGuestComponent } from 'src/app/pages/guest/bill-guest/bill-guest.component';
-import { BlogPostComponent } from 'src/app/pages/guest/blog-post/blog-post.component';
 
 
 @NgModule({
   declarations: [
     GuestComponent,
     DashboardGuestComponent,
-    BillGuestComponent,
-    BlogPostComponent
+    BillGuestComponent
   ],
   imports: [
     CommonModule,

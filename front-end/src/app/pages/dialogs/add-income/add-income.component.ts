@@ -44,7 +44,7 @@ export class AddIncomeComponent implements OnInit {
         if (this.form.credit > this.form.debit) {
           this.form['balance'] = this.form.credit - this.form.debit
         } else {
-          this.form['balance'] =  this.form.debit - this.form.credit
+          this.form['balance'] = this.form.debit - this.form.credit
         }
         this.incomeService.createIncome(this.data.token, this.form).subscribe((createIncome) => {
           this.dialogRef.close(true)

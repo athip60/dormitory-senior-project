@@ -21,7 +21,6 @@ export class UploadBillComponent implements OnInit {
     public dialogRef: MatDialogRef<UploadBillComponent>,
     public dialogService: DialogService,
     public billService: BillService,
-    public http: HttpClient,
     public datepipe: DatePipe
   ) { }
 

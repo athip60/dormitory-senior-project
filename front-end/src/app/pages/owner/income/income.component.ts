@@ -91,8 +91,6 @@ export class IncomeComponent implements OnInit {
       this.dataSource.sort = this.sort;
       // ทำให้ this.dataSource แบ่งหน้าได้
       this.dataSource.paginator = this.paginator;
-      console.log(this.dataSource);
-
     })
   }
 

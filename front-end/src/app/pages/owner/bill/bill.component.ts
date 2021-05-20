@@ -91,7 +91,6 @@ export class BillComponent implements OnInit {
           })
         })
       });
-
       this.data_bill = dataBills
       this.dataSource = new MatTableDataSource(this.data_bill)
       this.dataSource.sort = this.sort;
@@ -188,7 +187,7 @@ export class BillComponent implements OnInit {
           bold: 'true'
         },
         {
-          text: `Schlaf`,
+          text: `ระบบบริหารจัดการหอพัก`,
           fontSize: 17
         },
         {
@@ -364,12 +363,6 @@ export class BillComponent implements OnInit {
       },
       defaultStyle: {
         font: 'THSarabunNew'
-      },
-      watermark: {
-        text: `Schlaf`,
-        color: 'blue',
-        opacity: 0.1,
-        bold: true
       },
     };
 

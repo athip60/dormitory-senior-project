@@ -41,7 +41,8 @@ export class EditUserComponent implements OnInit {
               let form_User = {
                 role_user: this.form.role_user,
                 room_number: null,
-                lease_status: null
+                lease_status: null,
+                status_bill: null
               }
               let form_Room = {
                 room_status: 'ห้องว่าง',

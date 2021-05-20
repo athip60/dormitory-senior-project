@@ -120,7 +120,7 @@ export class LeaseAgreementComponent implements OnInit {
                 color: 'white'
 
               },
-              `สัญญานี้ทำขึ้นที่ หอ AA Place เมื่อวันที่ ${parseInt(moment.utc(data.updatedAt).format('DD'))} ${this.month[parseInt(moment.utc(data.updatedAt).format('MM')) - 1]} ${parseInt(moment.utc(data.updatedAt).format('YYYY')) + 543} เวลา ${moment(data.updatedAt).format('HH:mm')} ระหว่าง นายอธิป ศิริเศวกุลวงศ์ อยู่บ้านเลขที่  -  ตำบล/แขวง  ธาตุ  อำเภอ/เขต  วารินชำราบ  จังหวัด  อุบลราชธานี  ซึ่งต่อไปในสัญญานี้จะเรียกว่า “ผู้ให้เช่า” ฝ่ายหนึ่งกับ  ${response.name}  ${response.surname}  อยู่บ้านเลขที่………………ตำบล/แขวง…………………………..อำเภอ/เขต…………………………จังหวัด………………………ซึ่งต่อไปในสัญญานี้จะเรียกว่า “ผู้เช่า” อีกฝ่ายหนึ่ง\n`,
+              `สัญญานี้ทำขึ้นที่ หอ....................................... เมื่อวันที่ ${parseInt(moment.utc(data.updatedAt).format('DD'))} ${this.month[parseInt(moment.utc(data.updatedAt).format('MM')) - 1]} ${parseInt(moment.utc(data.updatedAt).format('YYYY')) + 543} เวลา ${moment(data.updatedAt).format('HH:mm')} ระหว่าง นายอธิป ศิริเศวกุลวงศ์ อยู่บ้านเลขที่  -  ตำบล/แขวง  ธาตุ  อำเภอ/เขต  วารินชำราบ  จังหวัด  อุบลราชธานี  ซึ่งต่อไปในสัญญานี้จะเรียกว่า “ผู้ให้เช่า” ฝ่ายหนึ่งกับ  ${response.name}  ${response.surname}  อยู่บ้านเลขที่………………ตำบล/แขวง…………………………..อำเภอ/เขต…………………………จังหวัด………………………ซึ่งต่อไปในสัญญานี้จะเรียกว่า “ผู้เช่า” อีกฝ่ายหนึ่ง\n`,
               {
                 text: '.                 ',
                 color: 'white'
@@ -353,7 +353,6 @@ export class LeaseAgreementComponent implements OnInit {
         defaultStyle: {
           font: 'THSarabunNew'
         },
-        watermark: { text: 'AA Place', color: 'blue', opacity: 0.1, bold: true },
       };
 
       switch (option) {

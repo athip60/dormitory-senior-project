@@ -29,44 +29,44 @@ export class DashboardGuestComponent implements OnInit {
     public router: Router
   ) { }
 
-  ngOnInit(): void {
-    this.token = this.tokenStorage.getToken()
-    const user = this.tokenStorage.getUser();
-    this.userLogin = parseInt(user.id)
-    this.blogService.findAllForGuest(this.token, parseInt(user.id)).subscribe(response => {
-      this.post_data = response
-      for (let index = 0; index < this.post_data.length; index++) {
-        this.authService.findById(this.post_data[index].user_post, this.token).subscribe(response => {
-          this.post_data[index]['name_user_post'] = response.name + ' ' + response.surname
+ngOnInit(): void {
+  this.token = this.tokenStorage.getToken()
+  const user = this.tokenStorage.getUser();
+  this.userLogin = parseInt(user.id)
+  this.blogService.findAllForGuest(this.token, parseInt(user.id)).subscribe(response => {
+    this.post_data = response
+    for (let index = 0; index < this.post_data.length; index++) {
+      this.authService.findById(this.post_data[index].user_post, this.token).subscribe(response => {
+        this.post_data[index]['name_user_post'] = response.name + ' ' + response.surname
+      })
+      if (this.post_data[index].send_from) {
+        this.authService.findById(this.post_data[index].send_from, this.token).subscribe(response => {
+          if (response) {
+            this.post_data[index]['name_user_send_from'] = response.name + ' ' + response.surname
+          }
+          else {
+            this.post_data[index]['name_user_send_from'] = 'ผู้ใช้งาน'
+          }
         })
-        if (this.post_data[index].send_from) {
-          this.authService.findById(this.post_data[index].send_from, this.token).subscribe(response => {
-            if (response) {
-              this.post_data[index]['name_user_send_from'] = response.name + ' ' + response.surname
-            }
-            else {
-              this.post_data[index]['name_user_send_from'] = 'ผู้ใช้งาน'
-            }
-          })
-        }
-        else {
-          this.post_data[index]['name_user_send_from'] = 'ทั้งหมด'
-        }
+      }
+      else {
+        this.post_data[index]['name_user_send_from'] = 'ทั้งหมด'
+      }
+    }
+  });
+  this.billService.findGuest(user.id, this.token).subscribe(dataBills => {
+    console.log(dataBills);
+
+    dataBills.forEach(data => {
+      if (data.bill_status === "ชำระเงินเรียบร้อย") {
+        this.totalCost += data.total_cost
+
+      } if (data.bill_status !== "ชำระเงินเรียบร้อย") {
+        this.overdue += data.total_cost
       }
     });
-    this.billService.findGuest(user.id, this.token).subscribe(dataBills => {
-      console.log(dataBills);
-
-      dataBills.forEach(data => {
-        if (data.bill_status === "ชำระเงินเรียบร้อย") {
-          this.totalCost += data.total_cost
-
-        } if (data.bill_status !== "ชำระเงินเรียบร้อย") {
-          this.overdue += data.total_cost
-        }
-      });
-    })
-  }
+  })
+}
   onSubmit(): void {
     this.dialogService.openDialogConfirm('ยืนยันโพสต์', 'ยืนยันข้อมูลใช่หรือไม่?').afterClosed().subscribe(res => {
       if (res === "true") {
@@ -75,8 +75,6 @@ export class DashboardGuestComponent implements OnInit {
         if (this.form.send_from) {
           this.form.send_from = parseInt(this.form.send_from)
         }
-        console.log(this.form);
-
         this.blogService.createPost(this.token, this.form).subscribe(response => {
           this.reloadPage()
         })

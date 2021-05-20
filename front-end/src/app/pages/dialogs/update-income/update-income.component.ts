@@ -52,7 +52,6 @@ export class UpdateIncomeComponent implements OnInit {
         })
       }
     })
-
   }
 
   closeDialog() {
